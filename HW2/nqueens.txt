@@ -1,0 +1,25 @@
+def n_queens_helper(n, board):
+  bl=len(board)
+  for i in range(n):
+    tempboard=board[:]
+    tempboard.append(i)
+    if(len(tempboard)<n and n_queens_valid(tempboard)):
+      n_queens_helper(n,tempboard)
+    if n_queens_valid(tempboard) and len(tempboard)==n:
+      print tempboard
+    
+    
+def n_queens_solutions(n):
+  board=[]
+  solution=n_queens_helper(n, board)
+  return solution
+  
+  
+def n_queens_helper(n, board):
+  if n_queens_valid(board) and len(board)==n:
+    yield board
+  elif(len(board)<n and n_queens_valid(board)):
+    for i in range(n):
+      tempboard=board[:]
+      tempboard.append(i)
+      n_queens_helper(n,tempboard)

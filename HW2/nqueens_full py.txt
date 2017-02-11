@@ -1,0 +1,136 @@
+############################################################
+# Section 1: N-Queens
+############################################################
+import copy
+def num_placements_all(n):
+  numplacements=1
+  for i in range(n):
+    numplacements*=((n*n)-i)
+  return numplacements
+
+def num_placements_one_per_row(n):
+  numplacements=1
+  for i in range(n):
+    numplacements*= n 
+  return numplacements
+
+def n_queens_valid(board):
+  numattacks=0
+  for i in range(len(board)):
+    #checking row attack
+    for r in range(len(board)):
+      if board[i]==board[r] and r<>i:
+        numattacks+=1
+    # left diagonal
+    for l in range(len(board)):
+      if ((l-i)==(board[l]-board[i])) and l<>i:
+        numattacks+=1
+    # right diagonal
+    for d in range(len(board)):
+      if ((i-d)==(board[d]-board[i])) and d<>i:
+        numattacks+=1
+  if numattacks:
+    return False
+  return True
+
+def n_queens_solutions(n):
+  board=[]
+  for i in range(n):
+    board.append(i)
+  solution=list(n_queens_helper(n,board))
+  for item in solution:
+    yield item
+
+#using permutations of all the possilble coloumn combinations
+#Unable to yield with DFS it prints the data correctly but
+#yields a list of generators
+def n_queens_helper(n,board):    
+  for item in permutations(board):
+    if n_queens_valid(item):
+      yield item
+
+#implemetation of n_queens_helper with DFS, having trouble with recursive yield
+def n_queens_solutions_DFS(n):
+  board=[]
+  solution=n_queens_helper(n, board)
+  return solution
+
+def n_queens_helper_DFS(n, board):
+  if n_queens_valid(board) and len(board)==n:
+    #print board
+    yield board
+  elif(len(board)<n and n_queens_valid(board)):
+    for i in range(n):
+      tempboard=board[:]
+      tempboard.append(i)
+      yield n_queens_helper(n,tempboard)
+
+      else:
+    return board
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  def n_queens_solutions(n):
+  board=[]
+  solution=n_queens_helper(n, board)
+  yield solution
+    
+def n_queens_solutions(n):
+  for i in range(n):
+    board.append(i)
+  solution=n_queens_helper(n, board)
+  for item in solution:
+    yield item
+
+def n_queens_helper(n, board):
+  bl=len(board)
+  if bl<=n:
+    for i in range(n):
+      tempboard=board[:]
+      tempboard.append(i)
+      if n_queens_valid(tempboard):
+          yield
+      n_queens_helper(n,tempboard)
+  
+  
+  
+  
+def n_queens_helper(n, board):
+  bl=len(board)
+  for i in range(n):
+    tempboard=board[:]
+    tempboard.append(i)
+    if(len(tempboard)<n):
+      return n_queens_helper(n,tempboard)
+    if n_queens_valid(tempboard) and len(tempboard)==n:
+        print tempboard
+        
+#permutations solution
+def n_queens_helper(n,board):
+  for item in permutations(board):
+    tempboard=[]
+    for i in range(len(item)):
+      tempboard.append(item[i])
+      if n_queens_valid(tempboard):
+        return tempboard
+
+
+
+
+
+        
+  tempboard=board[:]
+    tempboard.append(i)
+    if len(tempboard)<n:
+      yield n_queens_helper(n,tempboard)
+    if len(tempboard)==n and n_queens_valid(tempboard):
+      yield tempboard

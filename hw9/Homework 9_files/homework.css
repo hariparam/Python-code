@@ -1,0 +1,107 @@
+/* Main container */
+
+div.content {
+    max-width: 800px;
+    margin: auto;
+    font-family: Georgia, Times, Times New Roman, serif;
+}
+
+/* Title header */
+
+h1 {
+    text-align: center;
+}
+
+/* Standard text formatting */
+
+span.bold {
+    font-weight: bold;
+}
+
+span.italic {
+    font-style: italic;
+}
+
+span.small-caps {
+    font-variant: small-caps;
+}
+
+/* General table */
+
+table {
+    border-collapse: collapse;
+}
+
+/* Date table (release date and due date) */
+
+table.dates {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: auto;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+table.dates td {
+    padding: 3px 10px;
+}
+
+/* Side-by-side code group */
+
+table.codeGroup {
+    width: 100%;
+    table-layout: fixed;
+}
+
+table.codeGroup td {
+    vertical-align: top;
+    padding: 0;
+}
+
+table.codeGroup td:first-child {
+    padding-right: 5px;
+}
+
+table.codeGroup td:not(:first-child):not(:last-child) {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+table.codeGroup td:last-child {
+    padding-left: 5px;
+}
+
+/* Automatic section numbering */
+
+body {
+    counter-reset: section;
+}
+
+section.numbered h3::before {
+    counter-increment: section;
+    content: counter(section) ". ";
+}
+
+/* Automatic point values */
+
+span.points {
+    font-weight: bold;
+}
+
+span.points[data-value="1"]::before {
+    content: " [1 point] ";
+}
+
+span.points:not([data-value="1"])::before {
+    content: " [" attr(data-value) " points] ";
+}
+
+/* Hints */
+
+span.hint {
+    font-style: italic;
+}
+
+span.hint::before {
+    content: "Hint: ";
+}
